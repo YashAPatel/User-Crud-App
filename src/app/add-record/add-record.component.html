@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <Form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+            <h4>{{ editMode ? 'Edit User': 'Add User'}}</h4>
+            <br>
+            <h6>First Name:</h6>
+            <input 
+                placeholder="Enter First Name"
+                type="text"
+                name="firstName"
+                id="firstName"
+                class="form-control"
+                ng-maxlength="20" 
+                formControlName="firstName">
+            <h6>Last Name:</h6>
+            <input 
+                placeholder="Enter Last Name"
+                type="text"
+                name="lastName" 
+                id="lastName"
+                class="form-control"
+                ng-maxlength="20"
+                formControlName="lastName">
+            <br><br>
+            <button 
+                class="btn btn-primary" 
+                type="submit" 
+                style='margin-right:8px'
+                [disabled]="!userForm.valid">Submit</button>
+            <button 
+                class="btn btn-default" 
+                type="button"
+                (click)="onCancel()">Cancel</button>
+        </Form>
+      </div>
+    </div>
+</div>  
+
