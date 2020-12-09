@@ -1,13 +1,23 @@
 export class User{
-    id: string;
-    firstName: string;
-    lastName: string;
+    id: number;
+    email: string;
+    first_name: string;
+    last_name: string;
     avatar: string;
 
-    constructor(id: string,firstName: string, lastName: string,avatar: string){
+    constructor(id: number,email: string, first_name: string, last_name: string,avatar: string){
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.email=email;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.avatar = avatar;
     } 
+}
+
+export interface UserDetails{
+    page: number;
+    per_page: number;
+    total: number;
+    total_pages: number;
+    data: {id: number, email: string, first_name: string, last_name: string, avatar: string}[];
 }

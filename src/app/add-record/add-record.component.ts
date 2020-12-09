@@ -12,8 +12,6 @@ import { User } from '../model/user.model';
 })
 export class AddRecordComponent implements OnInit, OnDestroy {
 
-  public firstName: string;
-  public lastName: string;
   private id: number;
   public editMode=false;
   public userForm: FormGroup;
@@ -50,14 +48,17 @@ export class AddRecordComponent implements OnInit, OnDestroy {
   }
 
   private initForm(): void{
+    let firstName: string;
+    let lastName: string;
     if(this.editMode){
       this.user=this.recordsService.getUser(this.id);
-      this.firstName=this.user.firstName;
-      this.lastName=this.user.lastName;
+      console.log(this.user.first_name);
+      firstName=this.user.first_name;
+      lastName=this.user.last_name;
     }
     this.userForm = new FormGroup({
-      'firstName': new FormControl(this.firstName,Validators.required),
-      'lastName': new FormControl(this.lastName,Validators.required)
+      'firstName': new FormControl(firstName,Validators.required),
+      'lastName': new FormControl(lastName,Validators.required)
     });
   }
 

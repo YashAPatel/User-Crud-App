@@ -9,8 +9,8 @@
                     <th>Action</th>
                 </tr>
                 <tr *ngFor="let user of users; let i=index">
-                    <td>{{ user.firstName }}</td>
-                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
                     <td><img [src]="user.avatar" style='width:60px;'></td>
                     <td>
                         <a 
@@ -27,13 +27,12 @@
             <nav >
                 <ul class="pagination">
                   <li
-                    class="page-item"
-                    *ngFor="let index of totalPages">
+                    *ngFor="let index of totalPages; let page=index"
+                    [ngClass]="{ active: page+1 == currentPage }">
                     <a
                       class="page-link"
                       routerLink='/recordlist'
-                      routerLinkActive="active"
-                      (click)="changePage(index)">{{ index }}</a>
+                      (click)="getUsers(page+1)">{{ page+1 }}</a>
                   </li>
                 </ul>
               </nav>

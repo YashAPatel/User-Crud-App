@@ -8,6 +8,7 @@ import { AddRecordComponent } from './add-record/add-record.component';
 import { CommonModule } from '@angular/common';
 import { RecordsService } from './records.service';
 import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from "@angular/common/http";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [FormsModule],
   providers: [RecordsService],
