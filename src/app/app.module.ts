@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { RecordListComponent } from './record-list/record-list.component';
 import { AddRecordComponent } from './add-record/add-record.component';
 import { CommonModule } from '@angular/common';
-import { RecordsService } from './records.service';
+import { RecordsService } from './service/records.service';
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 

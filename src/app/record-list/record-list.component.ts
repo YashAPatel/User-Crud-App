@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { RecordsService } from '../records.service';
+import { RecordsService } from '../service/records.service';
 import { User } from '../model/user.model';
 
 @Component({
@@ -29,6 +29,7 @@ export class RecordListComponent implements OnInit {
     this.recordsService.getUsersFromPage(page).subscribe(
       responceData => {
         this.users= responceData.data;
+        this.recordsService.setUsers(this.users);
         this.totalPages= Array(responceData.total_pages);
       }
     );

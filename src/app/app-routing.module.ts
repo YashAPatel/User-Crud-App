@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 const appRoutes: Routes = [
   { path: '',  redirectTo: '/recordlist', pathMatch: 'full'},
   { path: 'recordlist', component: RecordListComponent},
-  { path: 'recordlist/new', component: AddRecordComponent},
   { path: 'recordlist/:id', component: AddRecordComponent}
 ];
 

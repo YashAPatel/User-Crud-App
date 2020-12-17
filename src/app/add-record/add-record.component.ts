@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { RecordsService } from '../records.service';
+import { RecordsService } from '../service/records.service';
 import { User } from '../model/user.model';
 
 @Component({
@@ -26,18 +26,33 @@ export class AddRecordComponent implements OnInit, OnDestroy {
       this.subscription = this.route.params 
         .subscribe(
           (params: Params) => {
-            this.id = +params['id'];
-            this.editMode = params['id'] != null;
-            this.initForm();
+            if(params['id']==='new')
+            {
+              this.initForm();
+            } else {
+              this.id = +params['id'];
+              this.editMode = params['id'] != null;
+              this.initForm();
+            }
           }
         ); 
     }
+
   public onSubmitForm(): void{
     if(this.editMode){
       this.editMode=false;
-      this.recordsService.updateUser(this.id, this.userForm.value);
+      this.recordsService
+        .updateUser(this.id, this.userForm.value)
+        .subscribe(responceData =>{
+          console.log(responceData);
+        });
     } else {
-      this.recordsService.addUser(this.userForm.value);
+      this.recordsService
+        .addUser(this.userForm.value)
+        .subscribe(
+          responceData => {
+            console.log(responceData);
+        });
     }
     this.onCancel();
   }
@@ -52,7 +67,6 @@ export class AddRecordComponent implements OnInit, OnDestroy {
     let lastName: string;
     if(this.editMode){
       this.user=this.recordsService.getUser(this.id);
-      console.log(this.user.first_name);
       firstName=this.user.first_name;
       lastName=this.user.last_name;
     }
